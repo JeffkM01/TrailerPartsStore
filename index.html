@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trailer Parts Store</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #004080;
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+
+    .cart {
+      position: relative;
+      margin-right: 20px;
+      font-size: 1.2em;
+      cursor: pointer;
+    }
+
+    .cart::after {
+      content: attr(data-count);
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      background: red;
+      color: white;
+      font-size: 0.7em;
+      padding: 2px 6px;
+      border-radius: 50%;
+      display: inline-block;
+      transition: transform 0.2s;
+    }
+
+    .cart.bump::after {
+      transform: scale(1.2);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .product {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 15px;
+      text-align: center;
+      transition: transform 0.2s ease;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+    }
+
+    .product img {
+      max-width: 100%;
+      height: 150px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .product-name {
+      font-weight: bold;
+      margin: 10px 0 5px;
+    }
+
+    .price {
+      color: #008000;
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-size: 1.1em;
+    }
+
+    button {
+      background-color: #004080;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 1em;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0066cc;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background-color: #ddd;
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Trailer Parts Store</h1>
+    <div class="cart" id="cart" data-count="0">🛒 Cart</div>
+  </header>
+
+  <div class="container">
+    <div class="product-grid">
+
+      <div class="product">
+        <img src="img/hitch.webp" alt="Trailer Hitch" />
+        <div class="product-name">Trailer Hitch</div>
+        <div class="price">$120.00</div>
+        <button onclick="addToCart()">Add to Cart</button>
+      </div>
+
+      <div class="product">
+        <img src="img/chains.jpg" alt="Safety Chains" />
+        <div class="product-name">Safety Chains</div>
+        <div class="price">$35.00</div>
+        <button onclick="addToCart()">Add to Cart</button>
+      </div>
+
+      <div class="product">
+        <img src="img/lights.webp" alt="Trailer Lights" />
+        <div class="product-name">Trailer Lights</div>
+        <div class="price">$50.00</div>
+        <button onclick="addToCart()">Add to Cart</button>
+      </div>
+
+      <div class="product">
+        <img src="img/tire.avif" alt="Spare Tire" />
+        <div class="product-name">Spare Tire</div>
+        <div class="price">$90.00</div>
+        <button onclick="addToCart()">Add to Cart</button>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Trailer Parts Store. All rights reserved.
+  </footer>
+
+  <script>
+    let cartCount = 0;
+    const cart = document.getElementById("cart");
+
+    function addToCart() {
+      cartCount++;
+      cart.setAttribute("data-count", cartCount);
+
+      // Add "bump" animation
+      cart.classList.add("bump");
+      setTimeout(() => cart.classList.remove("bump"), 200);
+    }
+  </script>
+
+</body>
+</html>
